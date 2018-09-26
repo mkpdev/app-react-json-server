@@ -12,28 +12,33 @@ class App extends Component {
   constructor(props){
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+    this.state ={
+      authenticated: false
+    }
   }
 
   componentDidMount(){
     if(this.state.authenticated){
-      const id = window.localStorage.getItem("id");
+      const id = localStorage.getItem("id");
       this.props.getUser({ id });
       this.props.getUserList();
     }
   }
 
+  componentDidUpdate() {
+    if(this.state.authenticated !== localStorage.getItem("LoggedIn") ) {
+      this.setState({ authenticated: localStorage.getItem("LoggedIn") })
+    }
+  }
+
   handleLogout(){
-    window.localStorage.clear();
+    localStorage.clear();
     this.setState({
       authenticated: ""
     });
   }
 
   render() {
-
-    this.state ={
-      authenticated: window.localStorage.getItem('LoggedIn') 
-    }
 
     return (
       <Router history={ history }>

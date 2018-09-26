@@ -14,7 +14,6 @@ import { Transfer } from './components/transfer';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
 import Account from './containers/Account';
-import { Footer} from './components/footer';
 import { PrivateRoute } from './PrivateRoute';
 import { UnAuthenticatedRoute } from './UnAuthenticatedRoute';
 

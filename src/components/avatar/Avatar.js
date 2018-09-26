@@ -22,8 +22,8 @@ export class Avatar extends React.Component {
       <span>
         {
           this.props.mode === "Header" ?
-          <img src={this.props.image} className="img-circle" onClick={this.handleDropdown} alt="Image Url" width="40" height="40"/>
-          :<img src={this.props.image} className="img-circle" alt="Image Url" width="100" height="100"/>
+          <img src={this.props.image} className="img-circle" onClick={this.handleDropdown} alt="" width="40" height="40"/>
+          :<img src={this.props.image} className="img-circle" alt="" width="100" height="100"/>
         }
         {
           this.state.showDropdown ?
