@@ -17,7 +17,8 @@ import Account from './containers/Account';
 import { PrivateRoute } from './PrivateRoute';
 import { UnAuthenticatedRoute } from './UnAuthenticatedRoute';
 
-export const Routes = (props) => (
+export const Routes = (props) => {
+  return(
   <Switch>
     <PrivateRoute exact path = '/index' authenticated={props.authenticated} component = { Dashboard }/>
     <PrivateRoute exact path = '/portfolio' authenticated={props.authenticated} component = { Portfolio }/>
@@ -33,4 +34,5 @@ export const Routes = (props) => (
     <UnAuthenticatedRoute exact path = '/signup' authenticated={props.authenticated} component = { Signup }/>
     <UnAuthenticatedRoute exact path = '/' authenticated={props.authenticated} component = { Login }/>
   </Switch>
-);
+)
+}

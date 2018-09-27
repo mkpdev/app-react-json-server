@@ -1,40 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './avatar.css';
+import { Link } from 'react-router-dom'; 
 
 export class Avatar extends React.Component {
-  constructor(props){
-    super(props);
-    this.state={
-      showDropdown: false
-    }
-    this.handleDropdown = this.handleDropdown.bind(this);
-  }
-
-  handleDropdown(){
-    this.setState({
-      showDropdown: !this.state.showDropdown,
-    });
-  }
-
-  render(){
+ 
+  render() {
     return(
-      <span>
-        {
-          this.props.mode === "Header" ?
-          <img src={this.props.image} className="img-circle" onClick={this.handleDropdown} alt="" width="40" height="40"/>
-          :<img src={this.props.image} className="img-circle" alt="" width="100" height="100"/>
-        }
-        {
-          this.state.showDropdown ?
-            <ul className="list-group dropdown">
-              <li className="list-group-item"><Link to='/account'>Account</Link></li>
-              <li className="list-group-item">Security</li>
-              <li className="list-group-item" onClick={this.props.click}><a href="#">Log Out</a></li>
-            </ul>
-            : ""
-        }
-      </span>
+      <div className="d-inline-block">
+          {
+            this.props.mode === "Header" ?
+            <div className="d-inline-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src={this.props.image} className="img-circle avatar" alt="" width="40" height="40"/>
+            </div>
+            :<img src={this.props.image} className="img-circle" alt="" width="72" height="72"/>
+          }                
+        <ul className="dropdown-menu dropdown-menu-right text-right">
+          <li><Link to="/account">Account</Link></li>
+          <li>Security</li>
+          <div className="dropdown-divider"></div>
+          <li onClick={this.props.click}><a className="text-danger" href="#">Log Out</a></li>
+        </ul>                
+      </div>
     );
   }
 }

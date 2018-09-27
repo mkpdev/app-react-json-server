@@ -17,6 +17,10 @@ class App extends Component {
     }
   }
 
+  componentWillMount() {
+    this.setState({ authenticated: localStorage.getItem("LoggedIn") });
+  }
+
   componentDidMount(){
     if(this.state.authenticated){
       const id = localStorage.getItem("id");
@@ -34,7 +38,7 @@ class App extends Component {
   handleLogout(){
     localStorage.clear();
     this.setState({
-      authenticated: ""
+      authenticated: false
     });
   }
 
@@ -42,12 +46,14 @@ class App extends Component {
 
     return (
       <Router history={ history }>
-        <div className="container App">
-          { this.state.authenticated ?
-            <div>
-              <Header users={this.props.users} Logout={this.handleLogout}/><hr/><Sidenav />
-            </div> : ""}
-          <Routes authenticated={ this.state.authenticated } />
+        <div className="App">
+          <div className="layout layout-nav-side">
+          { this.state.authenticated ? <Sidenav /> : "" }              
+            <div className="main-container">
+            { this.state.authenticated ? <Header users={this.props.users} Logout={this.handleLogout}/>: ""}
+              <Routes authenticated={ this.state.authenticated } />
+            </div>
+          </div>
         </div>
       </Router>
     );
